@@ -27,6 +27,14 @@ class HabitRead(HabitBase):
     created_at: datetime
 
 
+class HabitWithStats(HabitRead):
+    """A habit plus everything the frontend needs to draw its card."""
+    current_streak: int
+    longest_streak: int
+    done_today: bool
+    recent_days: list[date]  # check-ins in the heatmap window
+
+
 # --- Check-ins --------------------------------------------------------------
 
 class CheckIn(SQLModel, table=True):
@@ -35,4 +43,10 @@ class CheckIn(SQLModel, table=True):
 
     id: int | None = Field(default=None, primary_key=True)
     habit_id: int = Field(foreign_key="habit.id", index=True)
+    day: date
+
+
+class CheckInRead(SQLModel):
+    id: int
+    habit_id: int
     day: date

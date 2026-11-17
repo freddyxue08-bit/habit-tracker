@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Habit Tracker</h1>
+      <p class="muted" id="today-label"></p>
+    </header>
+
+    <form id="new-habit">
+      <input id="habit-name" type="text" placeholder="New habit, e.g. Read 20 pages" maxlength="100" required>
+      <input id="habit-color" type="color" value="#22c55e" title="Habit colour">
+      <button type="submit">Add</button>
+    </form>
+
+    <p id="error" class="error" hidden></p>
+    <p id="empty" class="muted" hidden>No habits yet. Add one above to start a streak.</p>
+    <ul id="habits"></ul>
+  </main>
+
+  <template id="habit-template">
+    <li class="habit">
+      <div class="habit-top">
+        <button class="check" title="Mark today as done"></button>
+        <div class="habit-info">
+          <span class="habit-name"></span>
+          <span class="stats muted"></span>
+        </div>
+        <button class="delete" title="Delete habit">✕</button>
+      </div>
+      <div class="heatmap"></div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
