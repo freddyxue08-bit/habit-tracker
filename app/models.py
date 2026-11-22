@@ -1,7 +1,6 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from sqlmodel import Field, SQLModel, UniqueConstraint
-
 
 # --- Habits -----------------------------------------------------------------
 
@@ -14,7 +13,7 @@ class HabitBase(SQLModel):
 class Habit(HabitBase, table=True):
     """The database table."""
     id: int | None = Field(default=None, primary_key=True)
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class HabitCreate(HabitBase):
